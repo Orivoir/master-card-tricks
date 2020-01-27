@@ -1,0 +1,377 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap') ;
+
+/* global styles */
+*::after , *::before {
+
+    content: "";
+}
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+main {
+    width: 60%;
+    margin: 5vh auto;
+}
+
+/* ---------------------------------
+         master-card styles
+   --------------------------------- */
+
+/* animations master-card */
+
+/* move arrow direction insert card */
+@keyframes insertMove {
+
+    from {
+        transform: translateX( 0 ) ;
+    }
+    46% {
+        transform: translateX( 12% ) ;
+    } to {
+        transform: translateX( -6.75% ) ;
+    }
+
+}
+
+/* move brisse glass effect on card logo */
+@keyframes brissGlass {
+
+    from {
+
+        transform: translate( -22% , 15% ) skew(35deg) ;
+        opacity: .1;
+    }
+
+    50%{
+        opacity: 1;
+    }
+    60% {
+        transform: translate( 60% , 8% ) scaleY( .5 ) skew( 30deg ) ;
+        opacity: 0;
+    }
+    to {
+        transform: translate( 100% , 8% ) skew(24deg) scaleY( .5 );
+    }
+}
+
+/* dim main contains */
+.wrap-faces-master-card {
+
+    transition: transform .13s ease-in-out;
+    position: relative;
+    display: inline-block;
+}
+.wrap-faces-master-card ul {
+
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    list-style: none;
+}
+
+/* dim faces */
+.master-card ,
+.master-card-backface ,
+.wrap-faces-master-card {
+    width: 20vw;
+    min-width: 120px;
+    max-width: 220px;
+    height: 21vh;
+    min-height: 58px;
+    max-height: 100px;
+}
+
+/* default style face */
+.master-card ,
+.master-card-backface {
+
+    z-index: 1;
+    left: 0;
+    top: 0;
+    backface-visibility: hidden;
+    background: rgb( 42,42,55 ) ; /* night blue */
+    border-radius: 4px;
+    position: absolute;
+    cursor: pointer;
+}
+
+/* block code card */
+.master-card::before {
+
+    content: "XXX";
+
+    text-align: center;
+    font-size: 85%;
+    letter-spacing: 0.06rem;
+    position: absolute;
+
+    left: 12.5%;
+    top: 12.5%;
+
+    width: 15%;
+    min-width: 42px;
+    max-width: 60px;
+    height: 9%;
+    min-height: 20px;
+    max-height: 30px;
+
+    background: #95a5a6;
+    border-radius: 2px;
+}
+
+/* circle logo */
+.master-card .wrap-circle-logo .circle-logo {
+
+    width: 2.8vw;
+    height: 2.8vw;
+
+    min-width: 14px;
+    min-height: 14px;
+
+    position: relative;
+    border-radius: 50%;
+}
+
+/* circle logo briss glass */
+.wrap-circle-logo::before {
+
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 85%;
+    top: 0;
+    border-left: 9px solid rgba(255,251,237,.16) ;
+    z-index: 3;
+    opacity: 0;
+
+    /* transform div 2 trapeze */
+    transform: translate( 0 , 15% ) skew(35deg);
+
+    transition: opacity .08s ease-in;
+}
+
+/* circle logo briss glass animation fire */
+.wrap-faces-master-card:hover .wrap-circle-logo::before {
+
+    animation: brissGlass .42s ease-in-out;
+}
+
+/* style clippy star hat of logo :-)  */
+.wrap-circle-logo::after {
+
+    content: "";
+    position: absolute;
+
+    width: 13px;
+    height: 13px;
+
+    /* MDN linear-gradient :
+        https://developer.mozilla.org/fr/docs/Web/CSS/linear-gradient */
+    background:
+        linear-gradient(217deg, #f1c40f, #e74c3c 70.71%),
+        linear-gradient(127deg, #e74c3c, #f1c40f 70.71%)
+    ;
+
+    /* clippy star */
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+
+    top: 0;
+    left: 50%;
+    transform: translate( -100% , -110%) ;
+    transition: transform .14s ease-in-out;
+}
+
+/*  style contains circles logo */
+.master-card .wrap-circle-logo {
+
+    position: absolute;
+    display: flex;
+    right: 12.5%;
+    bottom: 12.5%;
+}
+
+/* circle left */
+.master-card .circle-logo.red {
+
+    background: #e74c3c;
+}
+/* circle right */
+.master-card .circle-logo.yellow {
+
+    transform: translateX(-50%) ;
+    background: #f1c40f;
+}
+
+/* dim lines intersection circles logo */
+.master-card .circle-logo.red::after ,
+.master-card .circle-logo.red::before ,
+.master-card .circle-logo.yellow::before {
+
+    height: 8%;
+    min-height: 1px;
+}
+
+/* global styles lines intersection circles logo */
+.master-card .circle-logo.red::before ,
+.master-card .circle-logo.red::after {
+    position: absolute;
+    width: 12px;
+    background: #e74c3c;
+    transform: translate( -75% , -50% ) ;
+    z-index: 2;
+}
+
+/* position top line intersection circles logo */
+.master-card .circle-logo.red::before {
+    top: 30%;
+    right: 0%;
+}
+
+/* position bottom line intersection circles logo */
+.master-card .circle-logo.red::after {
+    top: 70%;
+    right: 0%;
+}
+
+/* middle line intersection circles logo  */
+.master-card .circle-logo.yellow::before {
+
+    position: absolute;
+
+    width: 7px;
+    background: #e74c3c;
+    top: 48%;
+    left: 0%;
+    z-index: 2;
+    transform: translate( 0% , -50% ) ;
+}
+
+/* arrow direction insert */
+.master-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 5%;
+    top: 12.5%;
+
+    width: 12.5%;
+    height: 25%;
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 50%;
+    background: #95a5a6;
+    clip-path: polygon(0 0, 0% 100%, 100% 50%) ;
+}
+
+/* brise glass fire */
+.master-card:hover::after  {
+
+    transform: translateX( 0 ) ;
+    animation: insertMove .8s ease-in-out alternate infinite;
+}
+
+/* rotate card */
+.wrap-faces-master-card:active > .master-card {
+
+    transform: rotateY( -180deg ) ;
+}
+.wrap-faces-master-card:active {
+
+    transform: rotateY( 180deg ) ;
+}
+
+/* master card backface */
+.wrap-faces-master-card .master-card-backface .master-card-author {
+
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    font-size: 10px;
+    display: inline-block;
+    background: #f1c40f;
+    padding: .08vh .3vw;
+    border-radius: 3px;
+    letter-spacing: .09rem;
+
+    top: 8%;
+    left: 4.8%;
+
+    color: rgb( 42,42,55 );
+    position: absolute;
+    font-weight: 600;
+
+    /* opposite rotate to backface card for text read */
+    transform: rotateY(180deg);
+}
+
+/* master card backface diamond icon */
+.master-card-diamond {
+
+    position: absolute;
+    left: 4.8%;
+    top: 42%;
+    width: 25px;
+    height: 38px;
+}
+
+/* top core diamond trapezoïd */
+.master-card-diamond .master-card-diamond-core-top {
+
+    background: #90a4ae;
+    position: absolute;
+    top: 0%;
+    width: 25px;
+    height: 16px;
+    clip-path: polygon(0 43%, 15% 0, 85% 0, 100% 43%);
+}
+
+/* bottom core diamond equilateral triangle */
+.master-card-diamond .master-card-diamond-core-bottom {
+
+    background: #90a4ae;
+    position: absolute;
+    top: 8px;
+    width: 25px;
+    height: calc( 38px - 16px );
+    clip-path: polygon(100% 0, 0 0, 55% 100%);
+}
+
+/* timestamp date card */
+.wrap-faces-master-card .master-card-backface .master-card-date {
+
+    /* opposite rotate to backface card */
+    transform: rotateY(180deg) ;
+    position: absolute;
+    display: inline-block;
+    user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    top: 55%;
+    right: 8%;
+    font-family: 'Roboto Mono' ;
+    border-radius: 3px;
+    letter-spacing: .04rem;
+    font-size: 10px;
+    padding: .12vh .25vw;
+    background: #546e7a;
+    color: #fff;
+}
+
+/* master card responsive */
+@media screen and (max-width:820px) , (max-height: 360px) {
+
+    /* clippy star hat logo responsive style */
+    .wrap-circle-logo::after {
+
+        transform: translate( -100% , -110%) scale( .72 ) ;
+    }
+}
